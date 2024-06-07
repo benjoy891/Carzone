@@ -1,13 +1,23 @@
 from django.shortcuts import render
 from django.http import HttpResponse  # This import may not be necessary for this particular view
+from .models import Team
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'pages/home.html')
+    teams = Team.objects.all()
+    data = {
+        'teams':teams,
+
+    }
+    return render(request, 'pages/home.html', data)
 
 def about(request):
-    return render(request, 'pages/about.html')
+    teams = Team.objects.all()
+    data = {
+        'teams':teams,
+    }
+    return render(request, 'pages/about.html',data)
 
 def cars(request):
     return render(request, 'pages/cars.html')
