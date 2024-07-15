@@ -1,0 +1,60 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} | Admin Login{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Team Details</h1>
+            <ul class="breadcrumbs">
+                <li>Update Team</li>
+                <li class="active">{{ team.first_name }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Update Team Details</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="car_title">First name :</label>
+            <input type="text" name="first_name" id="first_name" class="form-control" value="{{ team.first_name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="state">Last name :</label>
+            <input type="text" name="last_name" id="last_name" class="form-control" value="{{ team.last_name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="city">Designation :</label>
+            <input type="text" name="designation" id="designation" class="form-control" value="{{ team.designation }}" required>
+        </div>
+        <div class="form-group">
+            <label for="photo">Photo:</label><br>
+            <img src="{{ team.photo.url }}" alt="Image here" style="width: 100px; height: auto;">
+            <input type="file" name="photo" id="photo">
+        </div>       
+        <div class="form-group">
+            <label for="color">Facebook Link</label>
+            <input type="text" name="facebook_link" id="facebook_link" class="form-control" value="{{ team.facebook_link }}" required>
+        </div>
+        <div class="form-group">
+            <label for="year">Twitter Link :</label>
+            <input type="text" name="twitter_link" id="twitter_link" class="form-control" value="{{ team.twitter_link }}" required>
+        </div>
+        <div class="form-group">
+            <label for="condition">Google Plus Link :</label>
+            <input type="text" name="google_plus_link" id="google_plus_link" class="form-control" value="{{ team.google_plus_link }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Details</button>
+    </form>
+</div>
+<br>
+{% include 'includes/footer.html' %}
+
+{% endblock %}

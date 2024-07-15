@@ -1,0 +1,149 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} | Admin Login{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Car Details</h1>
+            <ul class="breadcrumbs">
+                <li>Update Car</li>
+                <li class="active">{{ car.car_title }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container">
+    <h2>Update Car Details</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="car_title">Car Title:</label>
+            <input type="text" name="car_title" id="car_title" class="form-control" value="{{ car.car_title }}" required>
+            <input type="number" name="car_id" value="{{car.id}}" hidden>
+        </div>
+        <div class="form-group">
+            <label for="state">State:</label>
+            <input type="text" name="state" id="state" class="form-control" value="{{ car.state }}" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" name="city" id="city" class="form-control" value="{{ car.city }}" required>
+        </div>
+        <div class="form-group">
+            <label for="color">Color:</label>
+            <input type="text" name="color" id="color" class="form-control" value="{{ car.color }}" required>
+        </div>
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <input type="number" name="year" id="year" class="form-control" value="{{ car.year }}" required>
+        </div>
+        <div class="form-group">
+            <label for="condition">Condition:</label>
+            <input type="text" name="condition" id="condition" class="form-control" value="{{ car.condition }}" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" name="price" id="price" class="form-control" value="{{ car.price }}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" class="form-control" rows="5" required>{{ car.description }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="car_photo">Main Car Photo:</label>
+            <input type="file" name="car_photo" id="car_photo" class="form-control">
+            {% if car.car_photo %}
+                <img src="{{ car.car_photo.url }}" alt="Current photo" width="100">
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="car_photo_1">Additional Photo 1:</label>
+            <input type="file" name="car_photo_1" id="car_photo_1" class="form-control">
+            {% if car.car_photo_1 %}
+                <img src="{{ car.car_photo_1.url }}" alt="Current photo" width="100">
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="car_photo_2">Additional Photo 2:</label>
+            <input type="file" name="car_photo_2" id="car_photo_2" class="form-control">
+            {% if car.car_photo_2 %}
+                <img src="{{ car.car_photo_2.url }}" alt="Current photo" width="100">
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="car_photo_3">Additional Photo 3:</label>
+            <input type="file" name="car_photo_3" id="car_photo_3" class="form-control">
+            {% if car.car_photo_3 %}
+                <img src="{{ car.car_photo_3.url }}" alt="Current photo" width="100">
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="car_photo_4">Additional Photo 4:</label>
+            <input type="file" name="car_photo_4" id="car_photo_4" class="form-control">
+            {% if car.car_photo_4 %}
+                <img src="{{ car.car_photo_4.url }}" alt="Current photo" width="100">
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="body_style">Body Style:</label>
+            <input type="text" name="body_style" id="body_style" class="form-control" value="{{ car.body_style }}" required>
+        </div>
+        <div class="form-group">
+            <label for="engine">Engine:</label>
+            <input type="text" name="engine" id="engine" class="form-control" value="{{ car.engine }}" required>
+        </div>
+        <div class="form-group">
+            <label for="transmission">Transmission:</label>
+            <input type="text" name="transmission" id="transmission" class="form-control" value="{{ car.transmission }}" required>
+        </div>
+        <div class="form-group">
+            <label for="interior">Interior:</label>
+            <input type="text" name="interior" id="interior" class="form-control" value="{{ car.interior }}" required>
+        </div>
+        <div class="form-group">
+            <label for="miles">Miles:</label>
+            <input type="number" name="miles" id="miles" class="form-control" value="{{ car.miles }}" required>
+        </div>
+        <div class="form-group">
+            <label for="door">Door:</label>
+            <input type="text" name="door" id="door" class="form-control" value="{{ car.door }}" required>
+        </div>
+        <div class="form-group">
+            <label for="passengers">Passengers:</label>
+            <input type="number" name="passengers" id="passengers" class="form-control" value="{{ car.passengers }}" required>
+        </div>
+        <div class="form-group">
+            <label for="vin_no">VIN Number:</label>
+            <input type="text" name="vin_no" id="vin_no" class="form-control" value="{{ car.vin_no }}" required>
+        </div>
+        <div class="form-group">
+            <label for="mileage">Mileage:</label>
+            <input type="number" name="mileage" id="mileage" class="form-control" value="{{ car.mileage }}" required>
+        </div>
+        <div class="form-group">
+            <label for="fuel_type">Fuel Type:</label>
+            <input type="text" name="fuel_type" id="fuel_type" class="form-control" value="{{ car.fuel_type }}" required>
+        </div>
+        <div class="form-group">
+            <label for="no_of_owners">Number of Owners:</label>
+            <input type="text" name="no_of_owners" id="no_of_owners" class="form-control" value="{{ car.no_of_owners }}" required>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" name="is_featured" id="is_featured" class="form-check-input" {% if car.is_featured %}checked{% endif %}>
+            <label for="is_featured" class="form-check-label">Is Featured?</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Car</button>
+    </form>
+</div>
+<br>
+
+{% include 'includes/footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+
+{% block title %} | Admin Dashboard{% endblock %}
+
+
+
+{% block content %}
+<!-- Top header start -->
+<header class="top-header th-2 top-header-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-7">
+                <div class="list-inline">
+                    <a href="tel:+55-4XX-634-7071"><i class="fa fa-phone"></i>+91-9496396532</a>
+                    <a href="tel:info@themevessel.com"><i class="fa fa-envelope"></i>carzone.com</a>
+                    <a href="tel:info@themevessel.com"><i class="fa fa-clock-o"></i>Mon - Sun: 8:00am - 6:00pm</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5">
+                <ul class="top-social-media pull-right">
+                    <li>
+                        <a href="{% url 'admin_dashboard' %}" class="sign-in"><i class="fa fa-tachometer"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="javascript:{document.getElementById('logout').submit()}" class="sign-in"><i class="fa fa-sign-out"></i> Logout</a>
+                        <form action="{% url 'logout' %}" id="logout" method="POST">
+                            {% csrf_token %}                            
+                            <input type="hidden">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Top header end -->
+
+
+<!-- Main header start -->
+<header class="main-header sticky-header header-with-top">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <img src="{% static 'img/logos/black-logo.png' %}" alt="logo">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="navbar-collapse collapse w-100" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a 
+                        class="nav-link"
+                        href="{% url 'admin_cars' %}">
+                            Cars
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                        class="nav-link"
+                        href="{% url 'admin_teams' %}">
+                            Teams
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                        class="nav-link"
+                        href="{% url 'admin_contact' %}">
+                            Contacted
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                        class="nav-link "
+                        href="{% url 'admin_refunds' %}">
+                            Refunds
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="nav-item dropdown">
+                        <a 
+                        class="nav-link active"
+                        href="{% url 'admin_payments' %}">
+                            Payments
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- Main header end -->
+
+
+
+
+<!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>payment</h1>
+            <ul class="breadcrumbs">
+                <li>Dashboard</li>
+                <li class="active">{{user.username}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+
+
+<!--   Dashboard Start   -->
+
+<div class="container mt-50 mb-50">
+    {% include 'includes/messages.html' %}
+	<div class="main-title" style="text-align:left !important;">
+            <h1>Welcome <span>{{user.username}}</span></h1>
+            <p>Admin Control Page</p>
+        </div>
+        {% if payments %}
+		<table class="table table-hover">
+			<thead>
+			  <tr>
+				<th scope="col">ID</th>
+				<th scope="col">First name</th>
+                <th scope="col">Car name</th>
+				<th scope="col">Trial date</th>
+                <th scope="col">Action</th>
+			  </tr>
+			</thead>
+			<tbody>
+              {% for payment in payments %}
+			  <tr>
+				<th scope="row">{{forloop.counter}}</th>
+				<td>{{payment.firstname}}</td>
+				<td>{{payment.car_title}}</td>
+				<td>{{payment.trial_date}}</td>
+                <td><a href="{% url 'payment_details' payment.id %}" class="btn btn-outline-dark">View</a></td>
+			  </tr>
+              {% endfor %}
+			</tbody>
+		  </table>
+          {% else %}
+          <h4>No Payments recieved.</h4>
+          <br>
+          {% endif %}
+</div>
+
+<!--   Dashboard End   -->
+
+
+{% include 'includes/footer.html' %}
+
+{% endblock %}

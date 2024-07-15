@@ -19,8 +19,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', include('customadmin.urls')),
+    path('dj-admin/', admin.site.urls),
     path('', include('pages.urls')),
+    path('cars/', include('cars.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('socialaccounts/', include('allauth.urls')),
+    path('contacts/', include('contacts.urls')),
 ] 
 
 if settings.DEBUG:

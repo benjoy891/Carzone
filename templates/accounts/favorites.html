@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block title %} | Favorates{% endblock %}
+
+
+{% block content %}
+
+<!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Favorates</h1>
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="active">{{user.first_name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+
+
+<!--   Dashboard Start   -->
+
+<div class="container mt-50 mb-50">
+    {% include 'includes/messages.html' %}
+	<div class="main-title" style="text-align:left !important;">
+            <h1>Welcome <span>{{user.first_name}}</span></h1>
+            <p>Here are your favorates:</p>
+        </div>
+		{% if favorites %}
+		<table class="table table-hover">
+			<thead>
+			  <tr>
+				<th scope="col">Car ID</th>
+				<th scope="col">Car Name</th>
+				<th scope="col">Action</th>
+				<th scope="col">Remove</th>
+			  </tr>
+			</thead>
+			<tbody>
+			{% for favorite in favorites %}
+			  <tr>
+				<th scope="row">{{favorite.car_id}}</th>
+				<td>{{favorite.car_title}}</td>
+				<td><a href="{% url 'car_detail' favorite.car_id %}" class="btn btn-outline-dark">View Car</a></td>
+				<td>                
+				<form method="post" action="{% url 'remove_from_favorites' favorite.car_id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">Remove</button>
+                </form>
+				</td>
+				
+			  </tr>
+			{% endfor %}
+			</tbody>
+		  </table>
+          <a href="{% url 'dashboard' %}" class="btn btn-outline-dark">Go to dashboard</a>		
+		  {% else %}
+		<h4>You have no Favorite cars yet.</h4><br>
+		<a href="{% url 'dashboard' %}" class="btn btn-outline-dark">Go to dashboard</a>		
+		{% endif %}
+</div>
+
+<!--   Dashboard End   -->
+
+
+
+{% endblock %}

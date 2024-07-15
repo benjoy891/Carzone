@@ -1,0 +1,33 @@
+#header {
+    background: #fff !important;
+    padding-bottom: 5px;
+    padding-top: 15px;
+    color: #374ef8;
+    box-shadow: 0px 0px 3px 0px #000000;
+}
+
+#header a:link, #header a:visited{
+    color: black;
+}
+#header a:link, #header a:visited, #logout-form button{
+    color: black;
+}
+div.breadcrumbs{
+    background-color: #000000;
+}
+.module h2, .module caption, .inline-group h2{
+    background-color: #000000;
+}
+.button.default, input[type=submit].default, .submit-row input.default {
+    background-color: #333333;
+}
+.button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default.focus, .button.default:hover, input[type=submit].default:hover {
+    background-color: #333333;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background-color: #777777;
+}
+a:link, a:visited{
+    color: #333333;
+}

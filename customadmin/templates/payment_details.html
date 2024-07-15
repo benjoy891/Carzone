@@ -1,0 +1,75 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} | Admin Login{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Bookinf and Test drive Details</h1>
+            <ul class="breadcrumbs">
+                <li>Booking</li>
+                <li class="active">{{ single_payment.first_name }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Booking details</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="car_title">First name :</label>
+            <input type="text" name="firstname" id="first_name" class="form-control" value="{{ single_payment.firstname }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="state">Last name :</label>
+            <input type="text" name="lastname" id="last_name" class="form-control" value="{{ single_payment.lastname }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="car_id">Car ID :</label>
+            <input type="number" name="car_id" id="car_id" class="form-control" value="{{ single_payment.car_id }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="user_id">User ID :</label>
+            <input type="number" name="car_id" id="car_id" class="form-control" value="{{ single_payment.user_id }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="car_title">Car Name :</label>
+            <input type="Text" name="car_title" id="car_title" class="form-control" value="{{ single_payment.car_title }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="year">City :</label>
+            <input type="text" name="city" id="city" class="form-control" value="{{ single_payment.city }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="condition">State :</label>
+            <input type="text" name="state" id="state" class="form-control" value="{{ single_payment.state }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="street">Street :</label>
+            <input type="text" name="street" id="street" class="form-control" value="{{ single_payment.street }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="condition">Pincode :</label>
+            <input type="tel" name="pincode" id="pincode" class="form-control" value="{{ single_payment.pincode }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="condition">phone :</label>
+            <input type="tel" name="phone" id="phone" class="form-control" value="{{ single_payment.phone }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="trial_date">Trial Date :</label>
+            <p>{{single_payment.trial_date}}</p>
+        </div>
+
+    </form>
+</div>
+<br>
+{% include 'includes/footer.html' %}
+
+{% endblock %}
